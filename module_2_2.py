@@ -5,7 +5,7 @@ drei = int(input('Введите третье число: '))
 if einz == zwei and einz == drei:
     print(3)
 
-elif einz == zwei or einz == drei:
+elif einz == zwei or einz == drei or zwei == drei:
     print(2)
 
 else:
