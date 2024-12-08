@@ -1,25 +1,37 @@
-def find_max(list_):
-    max_ = list_[0]
-    for i in list_:
-        if max_ < i:
-            max_ = i
-    return max_
+
+def calculate_structure_sum(*args):
+    total_sum = 0
+    for arg in args:
+        if isinstance(arg, (list, tuple, set)):
+            total_sum += calculate_structure_sum(*arg)
+        elif isinstance(arg, dict):
+            total_sum += calculate_structure_sum(*arg.items())
+        elif isinstance(arg, str):
+            total_sum += len(arg)
+        elif isinstance(arg, (int, float)):
+            total_sum += arg
+        elif arg is None:
+            pass
+    return total_sum
 
 
-def count_even(list_):
-    counter = 0
-    for i in list_:
-        if i % 2 == 0 and i != 0:
-            counter += 1
-    return counter
 
-def unique(list_):
-    new_list = []
-    for i in list_:
-        if i not in new_list:
-            new_list.append(i)
-    return new_list
 
-print(find_max([1, 54, 31, 621-200, 1, -1, 0]))
-print(count_even([1, 58, 32, 620, 1, -1, 0]))
-print(unique([1, 54, 31, 0, 1, -1, 0]))
+
+
+data_structure = [
+
+[1, 2, 3],
+
+{'a': 4, 'b': 5},
+
+(6, {'cube': 7, 'drum': 8}),
+
+"Hello",
+
+((), [{(2, 'Urban', ('Urban2', 35))}])
+
+]
+result = calculate_structure_sum(data_structure)
+
+print(result)
